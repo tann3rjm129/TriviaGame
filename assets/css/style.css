@@ -1,0 +1,31 @@
+/*Style to change header*/
+
+#color4nav {background-color: #4aaaa5 !important;
+			color: #777777 !important;}
+
+#tannerHeaderMargin {
+					color: white !important;
+					width: 200px !important;
+					font-size: 28px;
+					background-color: #4aaaa5 !important;
+					}
+#directoryHeaders {color: white !important;}
+
+html {box-sizing: border-box;
+		height: 100%;
+		width: 100%;
+			}
+/*font if needed*/
+/*@font-face {
+		font-family: ##;
+		src: url(##);
+}*/
+
+body  {		box-sizing: border-box;
+			background-image: url("../images/office-grp.jpg");
+			background-position: center;
+			background-repeat: no-repeat;
+			background-size: 100% 100%;
+			
+		}
+
