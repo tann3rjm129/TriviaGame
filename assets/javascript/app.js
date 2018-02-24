@@ -54,7 +54,7 @@ var t = 15;
 
 // starting the game once the start button is clicked
 
-$(document).on("click", "#startButton", function questionLoad(array) {
+$(document).on("click", "#startButton", function questionLoad() {
 // Question Loader
 
 for (var i=0; i<questions.length; i++) {
@@ -66,12 +66,12 @@ for (var i=0; i<questions.length; i++) {
 	time = setInterval(questionLoad, 1000);
 	timer();
 
-	$("#quizBox").append("<h2 class='question_format'>" + currentQuestion.number + "of 15 </h2>");
+	$("#quizBox").append("<h2 class='question_format'>" + questionArray.number + "of 15 </h2>");
 // Displays Questions
 	$("#quizBox").append("<h3 class='question_format'>" + currentQuestion + "</h3>");
 // Displays Choices
 	displayOptions();
-	$("#quizBox").append("<button class='btn-secondary btn-lg btn-block' onclick='answerChecker()'> Submit </button>");
+	$("#quizBox").append("<button class='btn-secondary btn-lg btn-block' onclick='answerChecker()'>" + Submit + "</button>");
 
 };
 
@@ -91,6 +91,7 @@ $("#quizBox").html("<br><br><h2><b>Final Score : </b>" + ((score/15)*100) + "</h
 function displayOptions(questionArray) {
 
 	for (j=0; j<4; j++) {
+
 	var currentOptions = questionArray.options[j];
 	var values = ["A", "B", "C", "D"]; 
 	$("#quizBox").append("<input type='radio' class='options_format' value="+ values[j] +">" + currentOptions + "</input>");
