@@ -59,19 +59,24 @@ $(document).on("click", "#startButton", function questionLoad() {
 
 for (var i=0; i<questions.length; i++) {
 // empties quiz box
-	var questionArray = questions[i];
-	var currentQuestion = questions[i].question;
+	
+	var currentQuestion = questions[i];
 	$("#quizBox").empty();
 // timer set
 	time = setInterval(questionLoad, 1000);
 	timer();
 
-	$("#quizBox").append("<h2 class='question_format'>" + questionArray.number + "of 15 </h2>");
+	$("#quizBox").append("<div class='row'><h2 class='question_format'>" + currentQuestion.number + "of 15 </h2></div>");
 // Displays Questions
-	$("#quizBox").append("<h3 class='question_format'>" + currentQuestion + "</h3>");
+	$("#quizBox").append("<div class='row'><h3 class='question_format'>" + currentQuestion.question + "</h3></div>");
 // Displays Choices
-	displayOptions();
-	$("#quizBox").append("<button class='btn-secondary btn-lg btn-block' onclick='answerChecker()'>" + Submit + "</button>");
+	$("#quizBox").append("<div class='row'><input type='radio' class='options_format' value='A'>" + currentQuestion.options[0] + "</input></div>");
+	$("#quizBox").append("<div class='row'><input type='radio' class='options_format' value='B'>" + currentQuestion.options[1] + "</input></div>");
+	$("#quizBox").append("<div class='row'><input type='radio' class='options_format' value='C'>" + currentQuestion.options[2] + "</input></div>");
+	$("#quizBox").append("<div class='row'><input type='radio' class='options_format' value='D'>" + currentQuestion.options[3] + "</input></div>");
+// displays submit button that runs "check answer"
+	$("#quizBox").append("<div class='row'><button class='btn-secondary btn-lg btn-block' id='check-answer'>Submit</button></div>");
+	$("#quizBox").on("click", "#check-answer", answerChecker(currentQuestion.answer))
 
 };
 
@@ -88,15 +93,7 @@ $("#quizBox").html("<br><br><h2><b>Final Score : </b>" + ((score/15)*100) + "</h
 
 // // Displays the Options function
 
-function displayOptions(questionArray) {
 
-	for (j=0; j<4; j++) {
-
-	var currentOptions = questionArray.options[j];
-	var values = ["A", "B", "C", "D"]; 
-	$("#quizBox").append("<input type='radio' class='options_format' value="+ values[j] +">" + currentOptions + "</input>");
-};
-};
 // 	for (j=0; j<questions.options.length; j++) {
 // 	$("#quizBox").append(`<input type='radio' class='options_format' value=${j}> ${options[j]} </input>`);
 // 	};
@@ -107,10 +104,11 @@ function displayOptions(questionArray) {
 
 
 // Answer Checker
-function answerChecker () {
-	// not sure if this is how I grab the value of each imput, grabs the "j" value I gave to each of the 
+function answerChecker (x) {
+
 	var questionAnswer = $(this).attr("value");
-	if ( questionAnswer == questions[i].answer){
+	var y = x;
+	if ( questionAnswer === y){
 		score++;
 		alert("You got the answer right!");
 	}
@@ -138,7 +136,7 @@ function timer() {
 
 	// move to next question
 	};
-	$("#quizBox").append("Seconds Remaining : " + t)
+	$("#quizBox").append("<div class='row'><h2 class='question_format'>Seconds Remaining : " + t + "</h2></div>")
 
 };
 
