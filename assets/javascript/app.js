@@ -1,3 +1,4 @@
+$(document).ready( function () {
 
 
 var questions = [{number:"1",
@@ -70,10 +71,10 @@ for (var i=0; i<questions.length; i++) {
 // Displays Questions
 	$("#quizBox").append("<div class='row'><h3 class='question_format'>" + currentQuestion.question + "</h3></div>");
 // Displays Choices
-	$("#quizBox").append("<div class='row'><input type='radio' class='options_format' value='A'>" + currentQuestion.options[0] + "</input></div>");
-	$("#quizBox").append("<div class='row'><input type='radio' class='options_format' value='B'>" + currentQuestion.options[1] + "</input></div>");
-	$("#quizBox").append("<div class='row'><input type='radio' class='options_format' value='C'>" + currentQuestion.options[2] + "</input></div>");
-	$("#quizBox").append("<div class='row'><input type='radio' class='options_format' value='D'>" + currentQuestion.options[3] + "</input></div>");
+	$("#quizBox").append("<div class='row'><input type='radio' id='choices' class='options_format' value='A'>" + currentQuestion.options[0] + "</input></div>");
+	$("#quizBox").append("<div class='row'><input type='radio' id='choices' class='options_format' value='B'>" + currentQuestion.options[1] + "</input></div>");
+	$("#quizBox").append("<div class='row'><input type='radio' id='choices' class='options_format' value='C'>" + currentQuestion.options[2] + "</input></div>");
+	$("#quizBox").append("<div class='row'><input type='radio' id='choices' class='options_format' value='D'>" + currentQuestion.options[3] + "</input></div>");
 // displays submit button that runs "check answer"
 	$("#quizBox").append("<div class='row'><button class='btn-secondary btn-lg btn-block' id='check-answer'>Submit</button></div>");
 	$("#quizBox").on("click", "#check-answer", answerChecker(currentQuestion.answer))
@@ -81,32 +82,16 @@ for (var i=0; i<questions.length; i++) {
 };
 
 $("#quizBox").empty();
-$("#quizBox").html("<br><br><h2><b>Final Score : </b>" + ((score/15)*100) + "</h2> <br><br> <h2><b>Wrong Answers : </b>" + wrong + "</h2> <br><br>");
+$("#quizBox").html("<br><br><h2><b>Final Score : </b>" + ((score/15)*100)+"%"+ "</h2> <br><br> <h2><b>Wrong Answers : </b>" + wrong + "</h2> <br><br>");
 
 });
-
-// Displays Question function
-
-// function displayQuesiton() {
-// 	$("#quizBox").append("<div class='question_format'>" + questions.question + "</div>");
-// };
-
-// // Displays the Options function
-
-
-// 	for (j=0; j<questions.options.length; j++) {
-// 	$("#quizBox").append(`<input type='radio' class='options_format' value=${j}> ${options[j]} </input>`);
-// 	};
-// };
-
-	// $(".question-div").append(`<input type='radio' name=${questions[questionIndex].identifier} class='options' value=${y}>${choices[y]} </input> <br />`);
 
 
 
 // Answer Checker
 function answerChecker (x) {
 
-	var questionAnswer = $(this).attr("value");
+	var questionAnswer = $("input[value]:selected").val();
 	var y = x;
 	if ( questionAnswer === y){
 		score++;
@@ -142,3 +127,4 @@ function timer() {
 
 
 
+});
